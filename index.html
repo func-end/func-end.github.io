@@ -1,12 +1,430 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>func-end</title>
-  </head>
-  <body>
-    <h1>Hello, I’m func-end</h1>
-    <p>Welcome to my website.</p>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>ZWO Seestar S50 Pro Tilt Problem</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Corner-by-corner star-size measurements on two ZWO Seestar S50 Pro smart telescopes, October and November 2026: method, results, and how to check your own.">
+<style>
+/* Layout: an astrophotography page. A full-bleed image masthead, sticky section
+   links, then the measurement story in a reading column about 68 characters wide,
+   with figures and tables breaking out to the full container. One dark,
+   night-sky look on purpose; accents borrow the two classic narrowband colours. */
+:root {
+  --paper: #090c12;      /* night sky, blue-black */
+  --panel: #111722;      /* raised panels */
+  --ink: #e1e7ef;        /* text */
+  --muted: #8f9bad;      /* captions, secondary */
+  --rule: #1e2633;       /* hairlines */
+  --hot: #ff6a55;        /* hydrogen-alpha red: headline figures, soft side */
+  --link: #4fc4d1;       /* oxygen-III teal: links */
+  --glass: rgba(9, 12, 18, 0.86);
+  /* data scale, the same yellow-to-red the figures use */
+  --d1: #fdf0b8; --d2: #fde08a; --d3: #fbbf5f; --d4: #f58a3c; --d5: #e2482b; --d6: #b3122c;
+  --d-ink: #1b1b1b;
+  --font-display: "Avenir Next", Avenir, "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-data: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --measure: 68ch;
+  --wide: 1100px;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.6 var(--font-body);
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--link); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px; }
+
+.wrap { max-width: calc(var(--wide) + 64px); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+
+/* masthead: the M31 mosaic, full width, title over its lower edge */
+.masthead { position: relative; display: grid; align-items: end; min-height: clamp(340px, 52vw, 600px); background: #000; overflow: hidden; }
+.masthead img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: 50% 45%; }
+.masthead::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(9,12,18,0) 35%, rgba(9,12,18,0.55) 70%, var(--paper) 100%); }
+.masthead-inner { position: relative; z-index: 1; width: 100%; max-width: calc(var(--wide) + 64px); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); padding-block: 48px 28px; display: grid; gap: 14px; }
+.masthead h1 { color: #f4f7fb; text-shadow: 0 2px 18px rgba(0,0,0,0.6); max-width: 18ch; }
+.masthead .eyebrow { color: #c9d3df; }
+.masthead .subtitle { margin: 0; font-family: var(--font-display); font-size: clamp(1.1rem, 0.95rem + 0.8vw, 1.5rem); font-weight: 500; color: #dbe3ec; text-shadow: 0 2px 12px rgba(0,0,0,0.6); }
+.masthead .credit { font-family: var(--font-data); font-size: 12px; color: #aab5c3; margin: 0; }
+
+/* section links */
+.toc { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--glass); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+.toc-inner { max-width: calc(var(--wide) + 64px); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; }
+.toc-inner::-webkit-scrollbar { display: none; }
+.toc a { flex: none; padding-block: 12px; font-family: var(--font-data); font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+.toc a:hover, .toc a:focus-visible { color: var(--ink); }
+html { scroll-padding-top: 52px; scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 52px; }
+.prose { max-width: var(--measure); }
+.prose > * + * { margin-top: 0.9em; }
+.prose p, .prose ul, .prose ol { margin-bottom: 0; }
+
+
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.1rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.45rem, 1.2rem + 1vw, 1.9rem); font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+.eyebrow {
+  font-family: var(--font-data); font-size: 12.5px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+.data { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+
+/* hero */
+.hero {
+  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 48px; align-items: center; padding-block: 36px 8px;
+}
+.hero .lede { font-size: 1.13rem; color: var(--ink); }
+.hero-text { display: grid; gap: 18px; min-width: 0; }
+
+.grid-figure { display: grid; gap: 12px; min-width: 0; }
+.hfd {
+  display: grid; grid-template-columns: auto repeat(3, 1fr); grid-template-rows: auto repeat(3, 1fr);
+  gap: 4px; max-width: 360px; width: 100%;
+}
+.hfd .ax { font-family: var(--font-data); font-size: 12px; color: var(--muted); display: grid; place-items: center; }
+.hfd .cell {
+  aspect-ratio: 1 / 1; display: grid; place-items: center; align-content: center; gap: 2px;
+  color: var(--d-ink); font-family: var(--font-data); font-variant-numeric: tabular-nums;
+  font-size: clamp(1rem, 0.8rem + 1vw, 1.45rem); font-weight: 700; border-radius: 3px;
+}
+.hfd .cell small { font-size: 11px; font-weight: 500; opacity: 0.75; }
+.hfd .cell.corner { box-shadow: inset 0 0 0 2px rgba(0,0,0,0.3); }
+.hfd { filter: drop-shadow(0 8px 24px rgba(0,0,0,0.45)); }
+.d1 { background: var(--d1); } .d2 { background: var(--d2); } .d3 { background: var(--d3); }
+.d4 { background: var(--d4); } .d5 { background: var(--d5); } .d6 { background: var(--d6); color: #fff !important; }
+.grid-figure figcaption { font-size: 14px; color: var(--muted); max-width: 46ch; }
+
+/* key figures */
+.units { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding-block: 40px; }
+.unit { display: grid; gap: 10px; align-content: start; padding: 22px 24px; background: var(--panel); border-radius: 6px; min-width: 0; }
+.unit .big { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.2rem, 1.6rem + 2.2vw, 3.2rem); line-height: 1; color: var(--hot); font-variant-numeric: tabular-nums; }
+.unit ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.unit .verdict { font-size: 15px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 10px; }
+
+section { padding-block: 44px 8px; display: grid; gap: 22px; }
+section + section { border-top: 1px solid var(--rule); }
+
+.formula {
+  font-family: var(--font-data); font-size: clamp(0.85rem, 0.75rem + 0.5vw, 1.02rem);
+  background: var(--panel); border-radius: 6px; padding: 16px 18px; overflow-x: auto; line-height: 1.5;
+}
+.formula b { color: var(--hot); font-weight: 700; }
+
+.facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 18px; margin: 0; font-size: 15.5px; max-width: var(--measure); }
+.facts dt { font-family: var(--font-data); font-size: 13px; color: var(--muted); padding-top: 3px; }
+.facts dd { margin: 0; }
+
+figure { margin: 0; display: grid; gap: 10px; min-width: 0; }
+figure.chart img { border: 1px solid var(--rule); border-radius: 6px; background: #fff; box-shadow: 0 8px 30px rgba(0,0,0,0.35); }
+figure figcaption { font-size: 14.5px; color: var(--muted); max-width: var(--measure); }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+
+.table-wrap { overflow-x: auto; max-width: 100%; }
+table { border-collapse: collapse; font-size: 15px; width: 100%; max-width: 820px; }
+th, td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--font-data); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+td.num { font-family: var(--font-data); font-variant-numeric: tabular-nums; text-align: right; padding-right: 22px; }
+th.num { text-align: right; padding-right: 22px; }
+tr.hi td { font-weight: 600; }
+td .pct { color: var(--hot); }
+
+.chart-svg { width: 100%; max-width: 760px; height: auto; display: block; }
+.chart-svg .c-grid { stroke: var(--rule); stroke-width: 1; }
+.chart-svg .c-ax { fill: var(--muted); font: 12px var(--font-data); }
+.chart-svg .c-note { fill: var(--muted); font: 11.5px var(--font-data); }
+.chart-svg .c-strong { fill: var(--ink); font-weight: 700; }
+.chart-svg .c-band { fill: var(--hot); opacity: 0.18; }
+.chart-svg .c-best { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 4; }
+.chart-svg .c-thr { stroke: var(--hot); stroke-width: 1; stroke-dasharray: 2 4; opacity: 0.7; }
+.chart-svg .c-val { fill: var(--ink); font: 600 12.5px var(--font-data); }
+.chart-svg .m-tr { stroke: var(--link); stroke-width: 2; }
+.chart-svg .m-bl { stroke: var(--hot); stroke-width: 2; }
+.chart-svg .m-tr.m-af { fill: var(--link); } .chart-svg .m-bl.m-af { fill: var(--hot); }
+.chart-svg .m-hand { fill: var(--paper); }
+ol.steps { padding-left: 1.3em; display: grid; gap: 8px; margin: 0; }
+
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
+.gallery img { border-radius: 4px; background: #000; }
+.gallery figcaption { font-size: 13.5px; }
+.gallery figcaption strong { color: var(--ink); font-weight: 600; display: block; }
+
+.note { font-size: 15px; color: var(--muted); }
+footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 28px 40px; }
+  .units, .pair { grid-template-columns: minmax(0, 1fr); }
+  .gallery { gap: 10px; }
+  .gallery figcaption { font-size: 12px; }
+}
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .unit { padding: 18px; }
+  .facts { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .facts dd { margin-bottom: 8px; }
+  table { font-size: 13.5px; }
+  th, td { padding-right: 8px; }
+  td.num, th.num { padding-right: 10px; }
+  th { font-size: 11px; letter-spacing: 0.03em; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <img src="img/gallery-m31-mosaic.jpg" width="1600" height="894" alt="The Andromeda Galaxy, M31, as a mosaic: its bright core and spiral disc." fetchpriority="high">
+  <div class="masthead-inner">
+    <p class="eyebrow">evanshq.me · ZWO Seestar S50 Pro · October–November 2026</p>
+    <h1>ZWO Seestar S50 Pro Tilt Problem</h1>
+    <p class="subtitle">Two units, measured corner by corner</p>
+    <p class="credit">M31 mosaic · 349 × 10 s · LP filter · unit 1 · 7 Oct 2026</p>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="toc-inner">
+    <a href="#summary">Summary</a>
+    <a href="#method">Method</a>
+    <a href="#unit1">Unit 1</a>
+    <a href="#unit2">Unit 2</a>
+    <a href="#retailer">Retailer</a>
+    <a href="#check">Check yours</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#limits">Limits</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<section id="summary" aria-label="Summary" class="summary">
+<div class="hero">
+  <div class="hero-text">
+    <p class="lede">I measured star sizes across the frame on two Seestar S50 Pro smart telescopes, the one I bought and its replacement, using hundreds of saved 10-second exposures and ASTAP's star detection. Both had one side of the field that was repeatably softer than the other. On the first unit, which side was soft depended on focus. On the replacement it was the bottom-right corner in every frame.</p>
+  </div>
+  <figure class="grid-figure" aria-labelledby="grid-cap">
+    <div class="hfd" role="img" aria-label="Three by three grid of median star sizes in pixels. Top row 4.5, 4.8, 5.0. Middle row 5.1, 5.3, 5.6. Bottom row 6.4, 6.7, 7.3.">
+      <span></span><span class="ax">A</span><span class="ax">B</span><span class="ax">C</span>
+      <span class="ax">1</span>
+      <span class="cell corner d1">4.5<small>1A</small></span>
+      <span class="cell d1">4.8</span>
+      <span class="cell corner d2">5.0<small>1C</small></span>
+      <span class="ax">2</span>
+      <span class="cell d2">5.1</span>
+      <span class="cell d2">5.3</span>
+      <span class="cell d3">5.6</span>
+      <span class="ax">3</span>
+      <span class="cell corner d4">6.4<small>3A</small></span>
+      <span class="cell d5">6.7</span>
+      <span class="cell corner d6">7.3<small>3C</small></span>
+    </div>
+    <figcaption id="grid-cap">Median star size (HFD, pixels) in each ninth of the frame, as the Seestar app shows it. Replacement unit, NGC 869, a 25-frame stack, 11 Nov 2026. Stars in the bottom-right corner (3C) are about 60% larger than in the top-left (1A).</figcaption>
+  </figure>
+</div>
+
+<div class="units">
+  <article class="unit" aria-labelledby="u1">
+    <p class="eyebrow" id="u1">Unit 1 · bought September 2026</p>
+    <div class="big">9.7–52%</div>
+    <ul>
+      <li>9.7% with autofocus at its best (7 Oct), 9.4% in equatorial mode (4 Oct).</li>
+      <li>32–42% about 20 focus steps either side of autofocus, with the soft side swapping; about 52% at 40 steps.</li>
+      <li>41–49% on 2 Oct.</li>
+    </ul>
+    <p class="verdict">Passes my screen at autofocus on a good night; fails it 20 steps either side.</p>
+  </article>
+  <article class="unit" aria-labelledby="u2">
+    <p class="eyebrow" id="u2">Unit 2 · replacement, November 2026</p>
+    <div class="big">44–47.5%</div>
+    <ul>
+      <li>Every repeated run on the first night, with IRCUT and LP filters.</li>
+      <li>Bottom-right was the softest corner in 179 of 179 frames.</li>
+      <li>ASTAP's own tilt inspector read 40–50% on sample frames.</li>
+    </ul>
+    <p class="verdict">Fails my screen at autofocus.</p>
+  </article>
+</div>
+</section>
+
+<section id="method" aria-labelledby="method-h">
+  <h2 id="method-h">How the number is worked out</h2>
+  <div class="prose">
+    <p>Each saved FITS frame goes through ASTAP's command-line star detection. ASTAP reports every star's half-flux diameter (HFD): the width of the circle that holds half the star's light. A softer star has a larger HFD.</p>
+    <p>The frame is split into a 3×3 grid, and the median HFD is taken in each corner, using ASTAP's labels: 1A top-left, 1C top-right, 3A bottom-left and 3C bottom-right. For each frame:</p>
+  </div>
+  <div class="formula" role="math" aria-label="Corner contrast equals the largest corner median HFD minus the smallest corner median HFD, divided by the median HFD of all stars in the frame, times 100.">
+    <b>corner contrast</b> = (largest corner median HFD − smallest corner median HFD) ÷ median HFD of all stars × 100
+  </div>
+  <div class="prose">
+    <p>A run's figure is the median over its frames. ASTAP's own Image Inspection tilt figure is calculated a little differently. On six sample frames it ranked them in the same order as this method and agreed within 1.5 percentage points on five of them, and within 4.3 on the sixth.</p>
+  </div>
+  <dl class="facts">
+    <dt>Target</dt><dd>NGC 869, the western half of the Double Cluster: a dense, even star field.</dd>
+    <dt>Capture</dt><dd>10 s exposures, gain 200, IRCUT filter unless noted, every frame saved. Alt-Az mode unless noted, on a levelled tripod.</dd>
+    <dt>Screen</dt><dd>Pass: 15% or less at autofocus, and under 25% at 20 focus steps either side. Worth raising with the seller: 25% or more, repeatably. These thresholds are mine, not ZWO's tolerances.</dd>
+    <dt>Why ±20</dt><dd>Unit 1 passed at autofocus on good nights but failed 20 steps either side, so a single autofocus run can miss the problem.</dd>
+  </dl>
+</section>
+
+<section id="unit1" aria-labelledby="unit1-h">
+  <h2 id="unit1-h">Unit 1: the soft side followed focus</h2>
+  <div class="prose">
+    <p>On 2 Oct the bottom of the frame was clearly softer, and refocusing didn't change that. About a quarter of the field had stars at least 20% wider than the centre.</p>
+  </div>
+  <figure class="chart">
+    <a href="img/unit1-2026-10-02-field.jpg"><img src="img/unit1-2026-10-02-field.jpg" width="1600" height="1236" loading="lazy" alt="Report card from 2 October: the app's image of NGC 869 with coloured bands showing star width rising toward the bottom edge, and charts showing 23% of the field (NGC 869) and 28% (NGC 752) with stars at least 20% wider than the centre after refocusing."></a>
+    <figcaption>2 Oct, Alt-Az. The coloured bands are a fitted model of star width relative to the centre, from individual frames. The close-ups compare one star of similar brightness from the top, centre and bottom.</figcaption>
+  </figure>
+  <div class="prose">
+    <p>On 7 Oct I stepped focus by hand around the autofocus position and measured each run.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th class="num">Focus</th><th>Set by</th><th class="num">Frames</th><th class="num">Contrast</th><th>Softest corner</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1000</td><td>hand</td><td class="num">12</td><td class="num"><span class="pct">51.6%</span></td><td>top-right, every frame</td></tr>
+        <tr><td class="num">1024</td><td>hand</td><td class="num">12</td><td class="num"><span class="pct">41.8%</span></td><td>top-right, every frame</td></tr>
+        <tr><td class="num">1040</td><td>autofocus</td><td class="num">33</td><td class="num">17.5%</td><td>bottom-left, 28 of 33</td></tr>
+        <tr class="hi"><td class="num">1042</td><td>autofocus again</td><td class="num">18</td><td class="num">9.7%</td><td>top-right, every frame</td></tr>
+        <tr><td class="num">1064</td><td>hand</td><td class="num">12</td><td class="num"><span class="pct">32.2%</span></td><td>bottom-left, every frame</td></tr>
+        <tr><td class="num">1080</td><td>hand</td><td class="num">12</td><td class="num"><span class="pct">52.0%</span></td><td>bottom-left, every frame</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note prose">The 1040 row pools three capture starts taken in twilight. At that fixed focus the bottom row sharpened from 5.8 to 4.7 px over about six minutes, so it also includes the scope settling.</p>
+  <figure class="chart">
+    <a href="img/unit1-2026-10-07-focus-sweep.png"><img src="img/unit1-2026-10-07-focus-sweep.png" width="1350" height="825" loading="lazy" alt="Chart of median star size against focus position for the top, middle and bottom rows of the frame on 7 October. The fitted minimum is at about 1061 for the top row, 1049 for the middle and 1029 for the bottom."></a>
+    <figcaption>Star size against focus for each row of the frame, 7 Oct. Fitted best focus: top row about 1061, middle 1049, bottom 1029.</figcaption>
+  </figure>
+  <div class="prose">
+    <p>The top and bottom of the frame came to their best focus about 32–35 steps apart. That figure comes from a quadratic fit, and it held across four ways of grouping runs and choosing stars. So the surface of best focus is tilted relative to the sensor. These measurements don't show why: a fixed misalignment, sag or something else could all do this.</p>
+    <p>It also explains why single nights disagreed. With focus at 1042 the field balanced and measured 9.7%; 20 steps either side gave 32–42%. In equatorial mode on 4 Oct it measured 9.4%. That was one night, so it doesn't show whether mount mode matters.</p>
+  </div>
+
+  <h3>A manual-focus option</h3>
+  <div class="prose">
+    <p>Because unit 1's soft side swapped with focus, there was a position in between where the two sides balanced. From the 7 Oct runs it sits at about 1045–1047, between the top row's best focus (about 1061) and the bottom row's (about 1029). Autofocus happened to land close to it that night: 1042, which measured 9.7%.</p>
+  </div>
+  <figure class="chart">
+    <svg class="chart-svg" viewBox="0 0 640 300" role="img" aria-labelledby="fc-title fc-desc">
+      <title id="fc-title">Unit 1 corner contrast against focus position, 7 October</title>
+      <desc id="fc-desc">Contrast falls from about 52% at focus 1000 to 9.7% at 1042, then rises to 52% at 1080. Below about 1045 the top-right corner is softest; above it the bottom-left is. The top row's best focus is about 1061 and the bottom row's about 1029; the estimated balance point is about 1045 to 1047.</desc>
+      <line class="c-grid" x1="48" y1="256" x2="624" y2="256"/><text class="c-ax" x="40" y="260" text-anchor="end">0%</text><line class="c-grid" x1="48" y1="176" x2="624" y2="176"/><text class="c-ax" x="40" y="180" text-anchor="end">20%</text><line class="c-grid" x1="48" y1="96" x2="624" y2="96"/><text class="c-ax" x="40" y="100" text-anchor="end">40%</text><line class="c-grid" x1="48" y1="16" x2="624" y2="16"/><text class="c-ax" x="40" y="20" text-anchor="end">60%</text><line class="c-grid" x1="105.6" y1="16" x2="105.6" y2="256"/><text class="c-ax" x="105.6" y="274" text-anchor="middle">1000</text><line class="c-grid" x1="220.8" y1="16" x2="220.8" y2="256"/><text class="c-ax" x="220.8" y="274" text-anchor="middle">1020</text><line class="c-grid" x1="336.0" y1="16" x2="336.0" y2="256"/><text class="c-ax" x="336.0" y="274" text-anchor="middle">1040</text><line class="c-grid" x1="451.2" y1="16" x2="451.2" y2="256"/><text class="c-ax" x="451.2" y="274" text-anchor="middle">1060</text><line class="c-grid" x1="566.4" y1="16" x2="566.4" y2="256"/><text class="c-ax" x="566.4" y="274" text-anchor="middle">1080</text>
+      <rect class="c-band" x="364.8" y="16" width="11.5" height="240"/>
+      <line class="c-best" x1="272.6" y1="16" x2="272.6" y2="256"/>
+      <line class="c-best" x1="457.0" y1="16" x2="457.0" y2="256"/>
+      <text class="c-note" x="266.6" y="30" text-anchor="end">bottom row best ≈1029</text>
+      <text class="c-note" x="463.0" y="30">top row best ≈1061</text>
+      <text class="c-note c-strong" x="370.6" y="248" text-anchor="middle">balance ≈1045–1047</text>
+      <line class="c-thr" x1="48" y1="196" x2="624" y2="196"/>
+      <text class="c-ax" x="620" y="191" text-anchor="end">15% pass</text>
+      <circle class="m-tr m-hand" cx="105.6" cy="49.6" r="6"/><text class="c-val" x="115.6" y="53.6" text-anchor="start">51.6%</text><circle class="m-tr m-hand" cx="243.8" cy="88.8" r="6"/><text class="c-val" x="233.8" y="92.8" text-anchor="end">41.8%</text><rect class="m-bl m-af" x="330.5" y="180.5" width="11" height="11" transform="rotate(45 336.0 186.0)"/><text class="c-val" x="326.0" y="190.0" text-anchor="end">17.5%</text><circle class="m-tr m-af" cx="347.5" cy="217.2" r="6"/><text class="c-val" x="357.5" y="221.2" text-anchor="start">9.7%</text><rect class="m-bl m-hand" x="468.7" y="121.7" width="11" height="11" transform="rotate(45 474.2 127.2)"/><text class="c-val" x="484.2" y="131.2" text-anchor="start">32.2%</text><rect class="m-bl m-hand" x="560.9" y="42.5" width="11" height="11" transform="rotate(45 566.4 48.0)"/><text class="c-val" x="556.4" y="52.0" text-anchor="end">52.0%</text>
+      <text class="c-ax" x="336" y="294" text-anchor="middle">Focus position (steps)</text>
+    </svg>
+    <figcaption>Unit 1, 7 Oct. Circles: top-right corner softest. Diamonds: bottom-left softest. Filled: autofocus. Open: set by hand. The dashed lines are each row's fitted best focus.</figcaption>
+  </figure>
+  <div class="prose">
+    <p>The Seestar app lets you turn autofocus off and set focus by hand. So on a unit like this one, setting focus by hand near the balance point looks like a workaround on nights when autofocus lands somewhere else. Focus numbers drift with temperature, so the point would have to be found on the night.</p>
+    <p>This is untested: none of the hand-set runs was at the balance point. It would also balance the softness rather than remove it, because the top and bottom of the frame would each still be about 16 steps from their own best focus.</p>
+  </div>
+</section>
+
+<section id="unit2" aria-labelledby="unit2-h">
+  <h2 id="unit2-h">Unit 2: bottom-right, every frame</h2>
+  <div class="prose">
+    <p>The replacement's first night was 11 Nov, on the same target with the same settings. The first run read 22.4% while the scope was still adjusting to the outside temperature; it wasn't repeated, so it isn't counted. Every run after that read 44–47.5%, including one taken after about two hours outside. Bottom-right was the softest corner in all 179 saved NGC 869 frames, with both filters.</p>
+    <p>Every run was at an autofocus position, from 1049 to 1060, and all were soft at the bottom right. No runs were taken 20 steps either side, so whether this unit had a balance point that manual focus could reach is unknown.</p>
+  </div>
+  <div class="pair">
+    <figure class="chart">
+      <a href="img/unit2-2026-11-11-worst-run.jpg"><img src="img/unit2-2026-11-11-worst-run.jpg" width="1760" height="1360" loading="lazy" alt="Report card for the replacement's worst run on 11 November: 47% median corner contrast, coloured bands rising toward the bottom-right corner of the app's NGC 869 image, a 3 by 3 grid of star sizes from 4.5 to 7.3 pixels, and close-ups of corner and centre stars."></a>
+      <figcaption>Worst run: 47% over 24 frames at focus 1057.</figcaption>
+    </figure>
+    <figure class="chart">
+      <a href="img/unit2-2026-11-11-best-run.jpg"><img src="img/unit2-2026-11-11-best-run.jpg" width="1760" height="1360" loading="lazy" alt="Report card for the replacement's best repeated run on 11 November: 44% median corner contrast after about two hours outside, with the same bottom-right pattern and a grid of star sizes from 4.5 to 7.0 pixels."></a>
+      <figcaption>Best repeated run: 44% over 80 frames at focus 1049, after about two hours outside.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="retailer" aria-labelledby="retailer-h">
+  <h2 id="retailer-h">What a retailer has said</h2>
+  <div class="prose">
+    <p>On 2 Nov the German review site <a href="https://www.blickohnegrenzen.de/2026/11/02/seestar-s50-pro-im-test-60-tage-praxiserfahrung/">blickohnegrenzen.de</a> added an official statement on sensor tilt from Astroshop, a German retailer. According to Astroshop:</p>
+    <ul>
+      <li>only units from the first shipment in September are affected;</li>
+      <li>the cause was a faulty plastic part, which ZWO has replaced with a sturdier metal holder;</li>
+      <li>units shipping now come from the improved production.</li>
+    </ul>
+    <p>The statement doesn't name the part or say how to tell an old unit from a new one. It comes from a retailer, and I haven't found a statement from ZWO itself.</p>
+    <p>My units fit it only partly. Unit 1 was delivered in late September, from the first shipment. Unit 2 shipped on 9 Nov, a week after the statement, and still measured 44–47%. That could mean the seller's stock was older, that the metal holder doesn't fix every unit, or that something else causes the softness on these units. My measurements can't tell which.</p>
+  </div>
+</section>
+
+<section id="check" aria-labelledby="check-h">
+  <h2 id="check-h">Checking your own</h2>
+  <ol class="steps prose">
+    <li>Pick a rich star field high in the sky. NGC 869 works well in autumn.</li>
+    <li>Shoot 10-second exposures with saving of individual frames turned on in the Seestar app.</li>
+    <li>Leave the scope outside for a while first, and compare repeated runs. A first run can read quite differently from later ones.</li>
+    <li>Copy the FITS frames to a computer and open them in <a href="https://www.hnsky.org/astap.htm">ASTAP</a> (free). Its Image Inspection tool reports a tilt figure and shows which corner is soft.</li>
+    <li>If autofocus looks fine, also shoot a few minutes 20 steps above and below it.</li>
+    <li>Judge on several frames and at least two nights. One frame isn't a verdict.</li>
+  </ol>
+  <p class="prose">The measuring tools I used, and an iPad app that gives a quick reading in the field, are free on GitHub: <a href="https://github.com/func-end/s50-tilt-tools">func-end/s50-tilt-tools</a> (MIT licence).</p>
+</section>
+
+<section id="gallery" aria-labelledby="gallery-h">
+  <h2 id="gallery-h">What the scopes still captured</h2>
+  <p class="prose">These stacks were processed with noise reduction and AI sharpening (RC-Astro BlurXTerminator and NoiseXTerminator). That sharpening can correct uneven star shapes, so these are pictures, not evidence about tilt.</p>
+  <div class="gallery">
+    <figure>
+      <a href="img/gallery-ngc6992-veil.jpg"><img src="img/gallery-ngc6992-veil.jpg" width="900" height="1600" loading="lazy" alt="The Eastern Veil Nebula, NGC 6992: filaments of a supernova remnant across a dense star field."></a>
+      <figcaption><strong>NGC 6992, Eastern Veil</strong><span class="data">151 × 10 s · LP · unit 1 · 1 Oct</span></figcaption>
+    </figure>
+    <figure>
+      <a href="img/gallery-ngc7000.jpg"><img src="img/gallery-ngc7000.jpg" width="894" height="1600" loading="lazy" alt="The North America Nebula, NGC 7000: glowing clouds of hydrogen gas in a rich star field."></a>
+      <figcaption><strong>NGC 7000, North America Nebula</strong><span class="data">120 × 10 s · LP · unit 1 · 4 Oct</span></figcaption>
+    </figure>
+    <figure>
+      <a href="img/gallery-ngc281.jpg"><img src="img/gallery-ngc281.jpg" width="894" height="1600" loading="lazy" alt="The Pacman Nebula, NGC 281: a glowing emission nebula."></a>
+      <figcaption><strong>NGC 281, Pacman Nebula</strong><span class="data">162 × 10 s · LP · unit 2 · 11 Nov</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="limits" aria-labelledby="limits-h">
+  <h2 id="limits-h">What this does and doesn't show</h2>
+  <ul class="prose">
+    <li>Two units, one owner, one site and a handful of nights.</li>
+    <li>The softness pattern repeated within each unit. Its physical cause isn't established.</li>
+    <li>The corner contrast uses ASTAP's star sizes with my own corner formula. It's close to ASTAP's tilt figure, but not identical.</li>
+    <li>The pass and fail thresholds are my screening rules, not ZWO's specification.</li>
+    <li>Focus, temperature and seeing all move the number, so compare repeated runs rather than single frames.</li>
+    <li>Both units went back to the seller.</li>
+  </ul>
+</section>
+
+<footer>
+  <p>Measured October–November 2026. Star detection: ASTAP command-line version CLI-2026.09.01. Analysis scripts in Python, written with help from AI assistants and checked with independent methods.</p>
+  <p>This page sets no cookies and loads nothing from other sites. Updated 14 Nov 2026.</p>
+</footer>
+
+</div>
+</body>
 </html>

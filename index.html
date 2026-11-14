@@ -175,6 +175,10 @@ ol.steps { padding-left: 1.3em; display: grid; gap: 8px; margin: 0; }
 .gallery figcaption strong { color: var(--ink); font-weight: 600; display: block; }
 
 .note { font-size: 15px; color: var(--muted); }
+.about { display: flex; gap: 24px; align-items: flex-start; }
+.about .avatar { flex: none; width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid var(--rule); }
+.about .prose { min-width: 0; }
+@media (max-width: 480px) { .about { flex-direction: column; gap: 16px; } .about .avatar { width: 96px; height: 96px; } }
 footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
 
 @media (max-width: 860px) {
@@ -452,9 +456,12 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 
 <section id="about" aria-labelledby="about-h">
   <h2 id="about-h">About</h2>
+  <div class="about">
+  <img class="avatar" src="img/about.jpg" width="300" height="300" loading="lazy" alt="Rick Evans outdoors, in a cap and sunglasses.">
   <div class="prose">
-    <p>I'm an amateur astronomer. I use a C8 for planetary imaging and visual observing, and I've also taken images with an Olympus OM-1 film camera. I bought a Seestar S50 Pro in September 2026 for deep-sky imaging. When the corners of its frames looked soft, I measured it, then measured its replacement the same way. This page is the result.</p>
+    <p>I'm Rick Evans, an amateur astronomer. I use a C8 for planetary imaging and visual observing, and I've also taken images with an Olympus OM-1 film camera. I bought a Seestar S50 Pro in September 2026 for deep-sky imaging. When the corners of its frames looked soft, I measured it, then measured its replacement the same way. This page is the result.</p>
     <p>Questions, or results from your own S50 Pro? Open an issue on the code repository: <a href="https://github.com/func-end/s50-tilt-tools/issues">github.com/func-end/s50-tilt-tools/issues</a>.</p>
+  </div>
   </div>
 </section>
 

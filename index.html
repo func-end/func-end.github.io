@@ -160,6 +160,7 @@ td .pct { color: var(--hot); }
 ol.steps { padding-left: 1.3em; display: grid; gap: 8px; margin: 0; }
 
 .gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
+.gallery figure.wide { grid-column: 1 / -1; }
 .gallery img { border-radius: 4px; background: #000; }
 .gallery figcaption { font-size: 13.5px; }
 .gallery figcaption strong { color: var(--ink); font-weight: 600; display: block; }
@@ -394,6 +395,10 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
   <h2 id="gallery-h">What the scopes still captured</h2>
   <p class="prose">These stacks were processed with noise reduction and AI sharpening (RC-Astro BlurXTerminator and NoiseXTerminator). That sharpening can correct uneven star shapes, so these are pictures, not evidence about tilt.</p>
   <div class="gallery">
+    <figure class="wide">
+      <a href="img/gallery-m31-mosaic.jpg"><img src="img/gallery-m31-mosaic.jpg" width="1600" height="894" loading="lazy" alt="The Andromeda Galaxy, M31, as a mosaic: its bright core and spiral disc."></a>
+      <figcaption><strong>M31, Andromeda Galaxy, mosaic</strong><span class="data">349 × 10 s · LP · unit 1 · 7 Oct</span></figcaption>
+    </figure>
     <figure>
       <a href="img/gallery-ngc6992-veil.jpg"><img src="img/gallery-ngc6992-veil.jpg" width="900" height="1600" loading="lazy" alt="The Eastern Veil Nebula, NGC 6992: filaments of a supernova remnant across a dense star field."></a>
       <figcaption><strong>NGC 6992, Eastern Veil</strong><span class="data">151 × 10 s · LP · unit 1 · 1 Oct</span></figcaption>

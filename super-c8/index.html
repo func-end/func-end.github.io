@@ -8,6 +8,17 @@
 <title>Celestron Super C8 Plus</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Rick Evans's 1985 black-tube Celestron Super C8 Plus: the scope, its drive and corrector, and imaging from film to a planetary camera.">
+<link rel="canonical" href="https://www.evanshq.me/super-c8/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="evanshq.me">
+<meta property="og:title" content="Celestron Super C8 Plus">
+<meta property="og:description" content="A 1985 black-tube Celestron Super C8 Plus, still in use: the scope, its drive and corrector, and imaging from film to a planetary camera.">
+<meta property="og:url" content="https://www.evanshq.me/super-c8/">
+<meta property="og:image" content="https://www.evanshq.me/super-c8/img/jupiter-first.jpg">
+<meta property="og:image:alt" content="Jupiter through the C8, with one of its moons.">
+<meta name="twitter:card" content="summary">
 <style>
 /* Super C8 Plus page: same tokens and components as the S50 page (index.html).
    Layout: an astrophotography page. A full-bleed image masthead, sticky section
@@ -200,9 +211,19 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 
+/* site bar: links between pages */
+.sitebar { background: #05070b; border-bottom: 1px solid var(--rule); }
+.sitebar-inner { max-width: calc(var(--wide) + 64px); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); display: flex; gap: 20px; align-items: center; min-height: 40px; font-size: 14px; }
+.sitebar a { color: var(--muted); text-decoration: none; }
+.sitebar a:hover, .sitebar a:focus-visible { color: var(--ink); }
+.sitebar a[aria-current="page"] { color: var(--ink); }
+.sitebar .brand { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin-right: auto; }
+@media (max-width: 860px) {
+  .toc-inner { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); padding-right: 36px; }
+}
 /* C8 page additions */
 .c8-hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-block: 28px 8px; }
-.c8-hero figure img { width: 100%; max-width: 300px; border-radius: 6px; border: 1px solid var(--rule); }
+.c8-hero figure img { width: 100%; max-width: 250px; border-radius: 6px; border: 1px solid var(--rule); }
 .masthead.plain { min-height: 0; background: linear-gradient(180deg, #0f1724 0%, var(--paper) 100%); }
 .masthead.plain::after { display: none; }
 .planet { max-width: 360px; }
@@ -211,9 +232,15 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 </style>
 </head>
 <body>
+<div class="sitebar"><nav class="sitebar-inner" aria-label="Site">
+  <a class="brand" href="/">evanshq.me</a>
+  <a href="/">S50 Pro tilt</a>
+  <a href="/super-c8/" aria-current="page">Super C8</a>
+</nav></div>
+
 <header class="masthead plain">
   <div class="masthead-inner">
-    <p class="eyebrow">evanshq.me · Vintage Schmidt-Cassegrain · since about 1991</p>
+    <p class="eyebrow">Vintage Schmidt-Cassegrain · mine since about 1991</p>
     <h1>Celestron Super C8 Plus</h1>
     <p class="subtitle">A 1985 black-tube C8, still in use</p>
   </div>
@@ -221,7 +248,6 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 
 <nav class="toc" aria-label="Sections">
   <div class="toc-inner">
-    <a href="../">S50 Pro tilt</a>
     <a href="#scope">The scope</a>
     <a href="#running">Keeping it running</a>
     <a href="#finding">Finding</a>

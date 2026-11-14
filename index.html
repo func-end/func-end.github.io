@@ -8,6 +8,19 @@
 <title>ZWO Seestar S50 Pro – Tilt Problem</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Corner-by-corner star-size measurements on two ZWO Seestar S50 Pro smart telescopes, October and November 2026: method, results, and how to check your own.">
+<link rel="canonical" href="https://www.evanshq.me/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="evanshq.me">
+<meta property="og:title" content="ZWO Seestar S50 Pro – Tilt Problem">
+<meta property="og:description" content="Corner-by-corner star-size measurements on two ZWO Seestar S50 Pro smart telescopes, with the method, the results and how to check your own.">
+<meta property="og:url" content="https://www.evanshq.me/">
+<meta property="og:image" content="https://www.evanshq.me/img/og-s50.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Andromeda Galaxy, M31, imaged with a Seestar S50 Pro.">
+<meta name="twitter:card" content="summary_large_image">
 <style>
 /* Layout: an astrophotography page. A full-bleed image masthead, sticky section
    links, then the measurement story in a reading column about 68 characters wide,
@@ -197,14 +210,44 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
   td.num, th.num { padding-right: 10px; }
   th { font-size: 11px; letter-spacing: 0.03em; }
 }
+
+/* site bar: links between pages */
+.sitebar { background: #05070b; border-bottom: 1px solid var(--rule); }
+.sitebar-inner { max-width: calc(var(--wide) + 64px); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); display: flex; gap: 20px; align-items: center; min-height: 40px; font-size: 14px; }
+.sitebar a { color: var(--muted); text-decoration: none; }
+.sitebar a:hover, .sitebar a:focus-visible { color: var(--ink); }
+.sitebar a[aria-current="page"] { color: var(--ink); }
+.sitebar .brand { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin-right: auto; }
+@media (max-width: 860px) {
+  .toc-inner { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); padding-right: 36px; }
+}
+/* gallery viewer: native popover, no script */
+.thumb { all: unset; display: block; cursor: zoom-in; border-radius: 4px; }
+.thumb img { border-radius: 4px; background: #000; }
+.thumb:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+.gallery figcaption .data { display: block; }
+.viewer { border: 0; padding: 0; margin: auto; background: transparent; color: #cfd8e3; max-width: 96vw; max-height: 96vh; overflow: visible; }
+.viewer::backdrop { background: rgba(4, 6, 10, 0.94); }
+.viewer img { display: block; width: auto; height: auto; max-width: min(96vw, 1400px); max-height: 80vh; margin: 0 auto; border-radius: 4px; }
+.viewer-cap { margin: 12px auto 0; max-width: 70ch; font-size: 14px; line-height: 1.5; text-align: center; padding-inline: 12px; }
+.viewer-cap strong { color: #f1f4f8; }
+.viewer-cap a { color: var(--link); }
+.viewer-close { position: fixed; top: max(12px, env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--rule); background: var(--panel); color: var(--ink); font-size: 22px; line-height: 1; cursor: pointer; }
+.viewer-close:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
+<div class="sitebar"><nav class="sitebar-inner" aria-label="Site">
+  <a class="brand" href="/">evanshq.me</a>
+  <a href="/" aria-current="page">S50 Pro tilt</a>
+  <a href="/super-c8/">Super C8</a>
+</nav></div>
+
 <header class="masthead">
-  <img src="img/gallery-m31-mosaic.jpg" width="1600" height="894" alt="The Andromeda Galaxy, M31, as a mosaic: its bright core and spiral disc." fetchpriority="high">
+  <img src="img/gallery-m31-mosaic.jpg" srcset="img/gallery-m31-mosaic-800.jpg 800w, img/gallery-m31-mosaic.jpg 1600w" sizes="100vw" width="1600" height="894" alt="The Andromeda Galaxy, M31, as a mosaic: its bright core and spiral disc." fetchpriority="high">
   <div class="masthead-inner">
-    <p class="eyebrow">evanshq.me · ZWO Seestar S50 Pro · October–November 2026</p>
+    <p class="eyebrow">ZWO Seestar S50 Pro · October–November 2026</p>
     <h1>ZWO Seestar S50 Pro – Tilt Problem</h1>
     <p class="subtitle">Two units, measured corner by corner</p>
     <p class="credit">M31 mosaic · 349 × 10 s · LP filter · unit 1 · 7 Oct 2026</p>
@@ -222,7 +265,6 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
     <a href="#gallery">Gallery</a>
     <a href="#limits">Limits</a>
     <a href="#about">About</a>
-    <a href="super-c8/">Super C8</a>
   </div>
 </nav>
 
@@ -317,7 +359,7 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
     <p>On 2 Oct the bottom of the frame was clearly softer, and refocusing didn't change that. About a quarter of the field had stars at least 20% wider than the centre.</p>
   </div>
   <figure class="chart">
-    <a href="img/unit1-2026-10-02-field.jpg"><img src="img/unit1-2026-10-02-field.jpg" width="1600" height="1236" loading="lazy" alt="Report card from 2 October: the app's image of NGC 869 with coloured bands showing star width rising toward the bottom edge, and charts showing 23% of the field (NGC 869) and 28% (NGC 752) with stars at least 20% wider than the centre after refocusing."></a>
+    <a href="img/unit1-2026-10-02-field.jpg"><img src="img/unit1-2026-10-02-field.jpg" srcset="img/unit1-2026-10-02-field-900.jpg 900w, img/unit1-2026-10-02-field.jpg 1600w" sizes="(max-width: 860px) 100vw, 1100px" width="1600" height="1236" loading="lazy" alt="Report card from 2 October: the app's image of NGC 869 with coloured bands showing star width rising toward the bottom edge, and charts showing 23% of the field (NGC 869) and 28% (NGC 752) with stars at least 20% wider than the centre after refocusing."></a>
     <figcaption>2 Oct, Alt-Az. The coloured bands are a fitted model of star width relative to the centre, from individual frames. The close-ups compare one star of similar brightness from the top, centre and bottom.</figcaption>
   </figure>
   <div class="prose">
@@ -383,11 +425,11 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
   </div>
   <div class="pair">
     <figure class="chart">
-      <a href="img/unit2-2026-11-11-worst-run.jpg"><img src="img/unit2-2026-11-11-worst-run.jpg" width="1760" height="1360" loading="lazy" alt="Report card for the replacement's worst run on 11 November: 47% median corner contrast, coloured bands rising toward the bottom-right corner of the app's NGC 869 image, a 3 by 3 grid of star sizes from 4.5 to 7.3 pixels, and close-ups of corner and centre stars."></a>
+      <a href="img/unit2-2026-11-11-worst-run.jpg"><img src="img/unit2-2026-11-11-worst-run.jpg" srcset="img/unit2-2026-11-11-worst-run-900.jpg 900w, img/unit2-2026-11-11-worst-run.jpg 1760w" sizes="(max-width: 860px) 100vw, 540px" width="1760" height="1360" loading="lazy" alt="Report card for the replacement's worst run on 11 November: 47% median corner contrast, coloured bands rising toward the bottom-right corner of the app's NGC 869 image, a 3 by 3 grid of star sizes from 4.5 to 7.3 pixels, and close-ups of corner and centre stars."></a>
       <figcaption>Worst run: 47% over 24 frames at focus 1057.</figcaption>
     </figure>
     <figure class="chart">
-      <a href="img/unit2-2026-11-11-best-run.jpg"><img src="img/unit2-2026-11-11-best-run.jpg" width="1760" height="1360" loading="lazy" alt="Report card for the replacement's best repeated run on 11 November: 44% median corner contrast after about two hours outside, with the same bottom-right pattern and a grid of star sizes from 4.5 to 7.0 pixels."></a>
+      <a href="img/unit2-2026-11-11-best-run.jpg"><img src="img/unit2-2026-11-11-best-run.jpg" srcset="img/unit2-2026-11-11-best-run-900.jpg 900w, img/unit2-2026-11-11-best-run.jpg 1760w" sizes="(max-width: 860px) 100vw, 540px" width="1760" height="1360" loading="lazy" alt="Report card for the replacement's best repeated run on 11 November: 44% median corner contrast after about two hours outside, with the same bottom-right pattern and a grid of star sizes from 4.5 to 7.0 pixels."></a>
       <figcaption>Best repeated run: 44% over 80 frames at focus 1049, after about two hours outside.</figcaption>
     </figure>
   </div>
@@ -422,28 +464,53 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 
 <section id="gallery" aria-labelledby="gallery-h">
   <h2 id="gallery-h">What the scopes still captured</h2>
-  <p class="prose">These stacks were processed with noise reduction and AI sharpening (RC-Astro BlurXTerminator and NoiseXTerminator). That sharpening can correct uneven star shapes, so these are pictures, not evidence about tilt.</p>
+  <p class="prose">Tap an image to see it larger. Four of these stacks were processed with noise reduction and AI sharpening (RC-Astro BlurXTerminator and NoiseXTerminator, marked BXT + NXT). That sharpening can correct uneven star shapes, so they're pictures, not evidence about tilt. The Veil is a plain stretch of the Seestar's own stack.</p>
   <div class="gallery">
     <figure class="wide">
-      <a href="img/gallery-m31-mosaic.jpg"><img src="img/gallery-m31-mosaic.jpg" width="1600" height="894" loading="lazy" alt="The Andromeda Galaxy, M31, as a mosaic: its bright core and spiral disc."></a>
-      <figcaption><strong>M31, Andromeda Galaxy, mosaic</strong><span class="data">349 × 10 s · LP · unit 1 · 7 Oct</span></figcaption>
+      <button class="thumb" type="button" popovertarget="view-m31" aria-label="View larger: M31, Andromeda Galaxy, mosaic"><img src="img/gallery-m31-mosaic.jpg" srcset="img/gallery-m31-mosaic-800.jpg 800w, img/gallery-m31-mosaic.jpg 1600w" sizes="(max-width: 1164px) 100vw, 1100px" width="1600" height="894" loading="lazy" alt="The Andromeda Galaxy, M31, as a mosaic: its bright core and spiral disc."></button>
+      <figcaption><strong>M31, Andromeda Galaxy, mosaic</strong><span class="data">7 Oct 2026 · unit 1 · Alt-Az · LP · 349 × 10 s ≈ 58 min · BXT + NXT</span></figcaption>
     </figure>
     <figure>
-      <a href="img/gallery-ngc6992-veil.jpg"><img src="img/gallery-ngc6992-veil.jpg" width="900" height="1600" loading="lazy" alt="The Eastern Veil Nebula, NGC 6992: filaments of a supernova remnant across a dense star field."></a>
-      <figcaption><strong>NGC 6992, Eastern Veil</strong><span class="data">151 × 10 s · LP · unit 1 · 1 Oct</span></figcaption>
+      <button class="thumb" type="button" popovertarget="view-veil" aria-label="View larger: NGC 6992, Eastern Veil"><img src="img/gallery-ngc6992-veil.jpg" srcset="img/gallery-ngc6992-veil-480.jpg 480w, img/gallery-ngc6992-veil.jpg 900w" sizes="(max-width: 860px) 50vw, 270px" width="900" height="1600" loading="lazy" alt="The Eastern Veil Nebula, NGC 6992: filaments of a supernova remnant across a dense star field."></button>
+      <figcaption><strong>NGC 6992, Eastern Veil</strong><span class="data">1 Oct 2026 · unit 1 · Alt-Az · LP · 151 × 10 s ≈ 25 min · stretch only</span></figcaption>
     </figure>
     <figure>
-      <a href="img/gallery-ngc7000.jpg"><img src="img/gallery-ngc7000.jpg" width="894" height="1600" loading="lazy" alt="The North America Nebula, NGC 7000: glowing clouds of hydrogen gas in a rich star field."></a>
-      <figcaption><strong>NGC 7000, North America Nebula</strong><span class="data">120 × 10 s · LP · unit 1 · 4 Oct</span></figcaption>
+      <button class="thumb" type="button" popovertarget="view-ngc7000" aria-label="View larger: NGC 7000, North America Nebula"><img src="img/gallery-ngc7000.jpg" srcset="img/gallery-ngc7000-480.jpg 480w, img/gallery-ngc7000.jpg 894w" sizes="(max-width: 860px) 50vw, 270px" width="894" height="1600" loading="lazy" alt="The North America Nebula, NGC 7000: glowing clouds of hydrogen gas in a rich star field."></button>
+      <figcaption><strong>NGC 7000, North America Nebula</strong><span class="data">4 Oct 2026 · unit 1 · equatorial · LP · 120 × 10 s = 20 min · BXT + NXT</span></figcaption>
     </figure>
     <figure>
-      <a href="img/gallery-ngc281.jpg"><img src="img/gallery-ngc281.jpg" width="894" height="1600" loading="lazy" alt="The Pacman Nebula, NGC 281: a glowing emission nebula."></a>
-      <figcaption><strong>NGC 281, Pacman Nebula</strong><span class="data">162 × 10 s · LP · unit 2 · 11 Nov</span></figcaption>
+      <button class="thumb" type="button" popovertarget="view-ngc281" aria-label="View larger: NGC 281, Pacman Nebula"><img src="img/gallery-ngc281.jpg" srcset="img/gallery-ngc281-480.jpg 480w, img/gallery-ngc281.jpg 894w" sizes="(max-width: 860px) 50vw, 270px" width="894" height="1600" loading="lazy" alt="The Pacman Nebula, NGC 281: a glowing emission nebula."></button>
+      <figcaption><strong>NGC 281, Pacman Nebula</strong><span class="data">11 Nov 2026 · unit 2 · Alt-Az · LP · 162 × 10 s = 27 min · BXT + NXT</span></figcaption>
     </figure>
     <figure>
-      <a href="img/gallery-sun-first.jpg"><img src="img/gallery-sun-first.jpg" width="665" height="800" loading="lazy" alt="The Sun through the Seestar's solar filter: an orange disc with one small sunspot."></a>
-      <figcaption><strong>The Sun, my first S50 Pro image</strong><span class="data">solar filter · unit 1 · 1 Oct</span></figcaption>
+      <button class="thumb" type="button" popovertarget="view-sun" aria-label="View larger: The Sun, my first S50 Pro image"><img src="img/gallery-sun-first.jpg" srcset="img/gallery-sun-first-480.jpg 480w, img/gallery-sun-first.jpg 665w" sizes="(max-width: 860px) 50vw, 270px" width="665" height="800" loading="lazy" alt="The Sun through the Seestar's solar filter: an orange disc with one small sunspot."></button>
+      <figcaption><strong>The Sun, my first S50 Pro image</strong><span class="data">1 Oct 2026 · unit 1 · solar filter · the Seestar app's own image</span></figcaption>
     </figure>
+  </div>
+  <div class="viewer" id="view-m31" popover>
+    <button class="viewer-close" type="button" popovertarget="view-m31" popovertargetaction="hide" aria-label="Close">×</button>
+    <img src="img/gallery-m31-mosaic.jpg" width="1600" height="894" loading="lazy" alt="The Andromeda Galaxy, M31, as a mosaic: its bright core and spiral disc.">
+    <p class="viewer-cap"><strong>M31, Andromeda Galaxy, mosaic.</strong> 7 Oct 2026 · unit 1 · Alt-Az · LP · 349 × 10 s ≈ 58 min · BXT + NXT. <a href="img/gallery-m31-mosaic.jpg">Open the full-size file</a>.</p>
+  </div>
+  <div class="viewer" id="view-veil" popover>
+    <button class="viewer-close" type="button" popovertarget="view-veil" popovertargetaction="hide" aria-label="Close">×</button>
+    <img src="img/gallery-ngc6992-veil.jpg" width="900" height="1600" loading="lazy" alt="The Eastern Veil Nebula, NGC 6992: filaments of a supernova remnant across a dense star field.">
+    <p class="viewer-cap"><strong>NGC 6992, Eastern Veil.</strong> 1 Oct 2026 · unit 1 · Alt-Az · LP · 151 × 10 s ≈ 25 min · stretch only. <a href="img/gallery-ngc6992-veil.jpg">Open the full-size file</a>.</p>
+  </div>
+  <div class="viewer" id="view-ngc7000" popover>
+    <button class="viewer-close" type="button" popovertarget="view-ngc7000" popovertargetaction="hide" aria-label="Close">×</button>
+    <img src="img/gallery-ngc7000.jpg" width="894" height="1600" loading="lazy" alt="The North America Nebula, NGC 7000: glowing clouds of hydrogen gas in a rich star field.">
+    <p class="viewer-cap"><strong>NGC 7000, North America Nebula.</strong> 4 Oct 2026 · unit 1 · equatorial · LP · 120 × 10 s = 20 min · BXT + NXT. <a href="img/gallery-ngc7000.jpg">Open the full-size file</a>.</p>
+  </div>
+  <div class="viewer" id="view-ngc281" popover>
+    <button class="viewer-close" type="button" popovertarget="view-ngc281" popovertargetaction="hide" aria-label="Close">×</button>
+    <img src="img/gallery-ngc281.jpg" width="894" height="1600" loading="lazy" alt="The Pacman Nebula, NGC 281: a glowing emission nebula.">
+    <p class="viewer-cap"><strong>NGC 281, Pacman Nebula.</strong> 11 Nov 2026 · unit 2 · Alt-Az · LP · 162 × 10 s = 27 min · BXT + NXT. <a href="img/gallery-ngc281.jpg">Open the full-size file</a>.</p>
+  </div>
+  <div class="viewer" id="view-sun" popover>
+    <button class="viewer-close" type="button" popovertarget="view-sun" popovertargetaction="hide" aria-label="Close">×</button>
+    <img src="img/gallery-sun-first.jpg" width="665" height="800" loading="lazy" alt="The Sun through the Seestar's solar filter: an orange disc with one small sunspot.">
+    <p class="viewer-cap"><strong>The Sun, my first S50 Pro image.</strong> 1 Oct 2026 · unit 1 · solar filter · the Seestar app's own image. <a href="img/gallery-sun-first.jpg">Open the full-size file</a>.</p>
   </div>
 </section>
 

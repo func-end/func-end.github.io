@@ -142,6 +142,15 @@ th { font-family: var(--font-data); font-size: 12px; letter-spacing: 0.06em; tex
 td.num { font-family: var(--font-data); font-variant-numeric: tabular-nums; text-align: right; padding-right: 22px; }
 th.num { text-align: right; padding-right: 22px; }
 tr.hi td { font-weight: 600; }
+table.nights td { font-size: 14.5px; }
+@media (max-width: 640px) {
+  table.nights, table.nights tbody, table.nights tr, table.nights td { display: block; width: 100%; }
+  table.nights thead { display: none; }
+  table.nights tr { border: 1px solid var(--rule); border-radius: 6px; padding: 8px 12px; margin-bottom: 10px; background: var(--panel); }
+  table.nights td { position: relative; border: 0; padding: 3px 0 3px 8.5em; text-align: left; }
+  table.nights td.num { text-align: left; padding-right: 0; padding-left: 8.5em; }
+  table.nights td::before { content: attr(data-label); position: absolute; left: 0; top: 5px; width: 8em; font-family: var(--font-data); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+}
 td .pct { color: var(--hot); }
 
 .chart-svg { width: 100%; max-width: 760px; height: auto; display: block; }
@@ -280,6 +289,20 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
     <dt>Screen</dt><dd>Pass: 15% or less at autofocus, and under 25% at 20 focus steps either side. Worth raising with the seller: 25% or more, repeatably. These thresholds are mine, not ZWO's tolerances.</dd>
     <dt>Why ±20</dt><dd>Unit 1 passed at autofocus on good nights but failed 20 steps either side, so a single autofocus run can miss the problem.</dd>
   </dl>
+  <h3 id="nights">Test nights</h3>
+  <div class="table-wrap">
+    <table class="nights">
+      <thead><tr><th>Night</th><th>Unit</th><th>Mount</th><th>Target, filter</th><th>Focus</th><th class="num">Frames</th><th>Corner contrast</th></tr></thead>
+      <tbody>
+        <tr><td data-label="Night">1 Oct</td><td data-label="Unit">1</td><td data-label="Mount">Alt-Az</td><td data-label="Target">first light; NGC 7000, LP</td><td data-label="Focus">—</td><td data-label="Frames" class="num">258</td><td data-label="Corner contrast">NGC 7000: <span class="pct">29.5%</span></td></tr>
+        <tr><td data-label="Night">2 Oct</td><td data-label="Unit">1</td><td data-label="Mount">Alt-Az</td><td data-label="Target">NGC 869, IRCUT; NGC 752</td><td data-label="Focus">1049, refocused to 1042</td><td data-label="Frames" class="num">182</td><td data-label="Corner contrast">NGC 869: <span class="pct">41–49%</span></td></tr>
+        <tr class="hi"><td data-label="Night">4 Oct</td><td data-label="Unit">1</td><td data-label="Mount">Equatorial (my only EQ test)</td><td data-label="Target">NGC 869, IRCUT; NGC 7000, LP</td><td data-label="Focus">autofocus 1061</td><td data-label="Frames" class="num">181</td><td data-label="Corner contrast">NGC 869: 9.4%; NGC 7000: 7.0%</td></tr>
+        <tr><td data-label="Night">7 Oct</td><td data-label="Unit">1</td><td data-label="Mount">Alt-Az</td><td data-label="Target">NGC 869, IRCUT (focus test)</td><td data-label="Focus">autofocus 1040 and 1042; by hand 1000–1080</td><td data-label="Frames" class="num">99</td><td data-label="Corner contrast">9.7% at autofocus 1042; <span class="pct">32–52%</span> by hand</td></tr>
+        <tr><td data-label="Night">11 Nov</td><td data-label="Unit">2</td><td data-label="Mount">Alt-Az</td><td data-label="Target">NGC 869, IRCUT and LP</td><td data-label="Focus">autofocus 1049–1060</td><td data-label="Frames" class="num">179</td><td data-label="Corner contrast"><span class="pct">44–47.5%</span> (22.4% on the first, warm run)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note prose">The mount mode comes from each saved frame's own header (EQMODE). Frame counts are the saved frames that night: all targets on 1–4 Oct, NGC 869 only on 7 Oct and 11 Nov. Focus numbers drift with temperature, so they can't be compared between nights.</p>
 </section>
 
 <section id="unit1" aria-labelledby="unit1-h">
@@ -314,7 +337,7 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
   </figure>
   <div class="prose">
     <p>The top and bottom of the frame came to their best focus about 32–35 steps apart. That figure comes from a quadratic fit, and it held across four ways of grouping runs and choosing stars. So the surface of best focus is tilted relative to the sensor. These measurements don't show why: a fixed misalignment, sag or something else could all do this.</p>
-    <p>It also explains why single nights disagreed. With focus at 1042 the field balanced and measured 9.7%; 20 steps either side gave 32–42%. In equatorial mode on 4 Oct it measured 9.4%. That was one night, so it doesn't show whether mount mode matters.</p>
+    <p>It also explains why single nights disagreed. With focus at 1042 the field balanced and measured 9.7%; 20 steps either side gave 32–42%. 4 Oct was my only test in equatorial mode. With autofocus at 1061, NGC 869 measured 9.4% (10th–90th percentile 6.2–12.6%) and NGC 7000 measured 7.0%. The bottom row was still the softest part of the frame in all 56 NGC 869 frames, but the difference was about a quarter of what the Alt-Az nights showed. One night can't show whether mount mode matters.</p>
     <p>Both good readings came from autofocus, not from a setting I chose. Autofocus doesn't aim for the balance point, so I read them as lucky focus rather than how the unit normally behaved. On 2 Oct, for comparison, it read 41–49%.</p>
   </div>
 

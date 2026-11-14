@@ -168,7 +168,7 @@ td .pct { color: var(--hot); }
 .chart-svg .m-hand { fill: var(--paper); }
 ol.steps { padding-left: 1.3em; display: grid; gap: 8px; margin: 0; }
 
-.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
+.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; align-items: start; }
 .gallery figure.wide { grid-column: 1 / -1; }
 .gallery img { border-radius: 4px; background: #000; }
 .gallery figcaption { font-size: 13.5px; }
@@ -184,7 +184,7 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 @media (max-width: 860px) {
   .hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 28px 40px; }
   .units, .pair { grid-template-columns: minmax(0, 1fr); }
-  .gallery { gap: 10px; }
+  .gallery { gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gallery figcaption { font-size: 12px; }
 }
 @media (max-width: 480px) {
@@ -438,6 +438,10 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
     <figure>
       <a href="img/gallery-ngc281.jpg"><img src="img/gallery-ngc281.jpg" width="894" height="1600" loading="lazy" alt="The Pacman Nebula, NGC 281: a glowing emission nebula."></a>
       <figcaption><strong>NGC 281, Pacman Nebula</strong><span class="data">162 × 10 s · LP · unit 2 · 11 Nov</span></figcaption>
+    </figure>
+    <figure>
+      <a href="img/gallery-sun-first.jpg"><img src="img/gallery-sun-first.jpg" width="665" height="800" loading="lazy" alt="The Sun through the Seestar's solar filter: an orange disc with one small sunspot."></a>
+      <figcaption><strong>The Sun, my first S50 Pro image</strong><span class="data">solar filter · unit 1 · 1 Oct</span></figcaption>
     </figure>
   </div>
 </section>

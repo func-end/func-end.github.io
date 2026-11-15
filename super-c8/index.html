@@ -218,6 +218,8 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 .sitebar a:hover, .sitebar a:focus-visible { color: var(--ink); }
 .sitebar a[aria-current="page"] { color: var(--ink); }
 .sitebar .brand { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin-right: auto; }
+.sitebar a { white-space: nowrap; }
+@media (max-width: 400px) { .sitebar-inner { gap: 12px; font-size: 13px; } }
 @media (max-width: 860px) {
   .toc-inner { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); padding-right: 36px; }
 }
@@ -238,6 +240,7 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
   <a class="brand" href="/">evanshq.me</a>
   <a href="/">S50 Pro tilt</a>
   <a href="/super-c8/" aria-current="page">Super C8</a>
+  <a href="/links/">Links</a>
 </nav></div>
 
 <header class="masthead plain">
@@ -340,7 +343,7 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 </section>
 
 <footer>
-  <p>Rick Evans · <a href="../">Seestar S50 Pro tilt measurements</a> · <a href="https://github.com/func-end/s50-tilt-tools">code on GitHub</a> · <a href="../#links">other astronomy sites</a></p>
+  <p>Rick Evans · <a href="../">Seestar S50 Pro tilt measurements</a> · <a href="https://github.com/func-end/s50-tilt-tools">code on GitHub</a> · <a href="/links/">best astronomy websites</a></p>
   <p>This page sets no cookies. The only thing it loads from another site is Cloudflare's cookie-free visitor count.</p>
 </footer>
 

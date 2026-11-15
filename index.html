@@ -189,10 +189,6 @@ ol.steps { padding-left: 1.3em; display: grid; gap: 8px; margin: 0; }
 .gallery figcaption strong { color: var(--ink); font-weight: 600; display: block; }
 
 .note { font-size: 15px; color: var(--muted); }
-.about { display: flex; gap: 24px; align-items: flex-start; }
-.about .avatar { flex: none; width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid var(--rule); }
-.about .prose { min-width: 0; }
-@media (max-width: 480px) { .about { flex-direction: column; gap: 16px; } .about .avatar { width: 96px; height: 96px; } }
 footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
 
 @media (max-width: 860px) {
@@ -221,6 +217,7 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 .sitebar .brand { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin-right: auto; }
 .sitebar a { white-space: nowrap; }
 @media (max-width: 400px) { .sitebar-inner { gap: 12px; font-size: 13px; } }
+@media (max-width: 360px) { .sitebar .brand { display: none; } }
 @media (max-width: 860px) {
   .toc-inner { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); padding-right: 36px; }
 }
@@ -246,6 +243,7 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
   <a href="/" aria-current="page">S50 Pro tilt</a>
   <a href="/super-c8/">Super C8</a>
   <a href="/links/">Links</a>
+  <a href="/about/">About</a>
 </nav></div>
 
 <header class="masthead">
@@ -268,7 +266,6 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
     <a href="#check">Check yours</a>
     <a href="#gallery">Gallery</a>
     <a href="#limits">Limits</a>
-    <a href="#about">About</a>
   </div>
 </nav>
 
@@ -464,6 +461,7 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
     <li>Judge on several frames and at least two nights. One frame isn't a verdict.</li>
   </ol>
   <p class="prose">The measuring tools I used, and an iPad app that gives a quick reading in the field, are free on GitHub: <a href="https://github.com/func-end/s50-tilt-tools">func-end/s50-tilt-tools</a> (MIT licence).</p>
+  <p class="prose">Questions, or results from your own S50 Pro? Reply in the <a href="https://www.cloudynights.com/forums/topic/1010976-seestar-s50-pro-camera-tilt/page/2/">Seestar S50 Pro camera tilt thread</a> on Cloudy Nights, where I'm <strong>forloop</strong>, or open an issue on the code repository: <a href="https://github.com/func-end/s50-tilt-tools/issues">github.com/func-end/s50-tilt-tools/issues</a>.</p>
 </section>
 
 <section id="gallery" aria-labelledby="gallery-h">
@@ -531,20 +529,8 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 </section>
 
 
-<section id="about" aria-labelledby="about-h">
-  <h2 id="about-h">About</h2>
-  <div class="about">
-  <img class="avatar" src="img/about.jpg" width="300" height="300" loading="lazy" alt="Rick Evans outdoors, in a cap and sunglasses.">
-  <div class="prose">
-    <p>I'm Rick Evans, an amateur astronomer. I use a <a href="super-c8/">C8</a> for planetary imaging and visual observing, and I've also taken images with an Olympus OM-1 film camera using the C8. I bought a Seestar S50 Pro in September 2026 for deep-sky imaging. When the corners of its frames looked soft, I measured it, then measured its replacement the same way. This page is the result.</p>
-    <p>I'm <strong>forloop</strong> on Cloudy Nights, where I first posted these results in the <a href="https://www.cloudynights.com/forums/topic/1010976-seestar-s50-pro-camera-tilt/page/2/">Seestar S50 Pro camera tilt thread</a>. I'm also on <a href="https://www.linkedin.com/in/rickdevans/">LinkedIn</a>.</p>
-    <p>Questions, or results from your own S50 Pro? Open an issue on the code repository: <a href="https://github.com/func-end/s50-tilt-tools/issues">github.com/func-end/s50-tilt-tools/issues</a>.</p>
-  </div>
-  </div>
-</section>
-
 <footer>
-  <p>More astronomy sites and free tools: <a href="/links/">best astronomy websites</a>.</p>
+  <p>By <a href="/about/">Rick Evans</a>. More astronomy sites and free tools: <a href="/links/">best astronomy websites</a>.</p>
   <p>Measured October–November 2026. Star detection: ASTAP command-line version CLI-2026.09.01. Analysis scripts in Python, written with help from AI assistants and checked with independent methods.</p>
   <p>This page sets no cookies. The only thing it loads from another site is Cloudflare's cookie-free visitor count. Updated 15 Nov 2026.</p>
 </footer>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src https://static.cloudflareinsights.com; connect-src https://cloudflareinsights.com; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>About Rick Evans, Amateur Astronomer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Rick Evans, amateur astronomer: visual observing and planetary imaging with a 1985 Celestron Super C8 Plus, and corner-by-corner tilt measurements of the ZWO Seestar S50 Pro.">
+<link rel="canonical" href="https://www.evanshq.me/about/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="evanshq.me">
+<meta property="og:title" content="About Rick Evans, Amateur Astronomer">
+<meta property="og:description" content="Visual observing and planetary imaging with a 1985 Celestron Super C8 Plus, and tilt measurements of the ZWO Seestar S50 Pro.">
+<meta property="og:url" content="https://www.evanshq.me/about/">
+<meta property="og:image" content="https://www.evanshq.me/img/about.jpg">
+<meta property="og:image:width" content="300">
+<meta property="og:image:height" content="300">
+<meta property="og:image:alt" content="Rick Evans outdoors, in a cap and sunglasses.">
+<meta name="twitter:card" content="summary">
+<style>
+/* About page: same tokens and components as the other pages. A plain
+   masthead, then a portrait beside the reading column, then cards for the
+   site's pages. One dark, night-sky look on purpose. */
+:root {
+  --paper: #090c12;      /* night sky, blue-black */
+  --panel: #111722;      /* raised panels */
+  --ink: #e1e7ef;        /* text */
+  --muted: #8f9bad;      /* captions, secondary */
+  --rule: #1e2633;       /* hairlines */
+  --hot: #ff6a55;        /* hydrogen-alpha red */
+  --link: #4fc4d1;       /* oxygen-III teal: links */
+  --font-display: "Avenir Next", Avenir, "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-data: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --measure: 68ch;
+  --wide: 1100px;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.6 var(--font-body);
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--link); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px; }
+
+.wrap { max-width: calc(var(--wide) + 64px); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+
+/* site bar: links between pages */
+.sitebar { background: #05070b; border-bottom: 1px solid var(--rule); }
+.sitebar-inner { max-width: calc(var(--wide) + 64px); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); display: flex; gap: 20px; align-items: center; min-height: 40px; font-size: 14px; }
+.sitebar a { color: var(--muted); text-decoration: none; }
+.sitebar a:hover, .sitebar a:focus-visible { color: var(--ink); }
+.sitebar a[aria-current="page"] { color: var(--ink); }
+.sitebar .brand { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin-right: auto; }
+.sitebar a { white-space: nowrap; }
+@media (max-width: 400px) { .sitebar-inner { gap: 12px; font-size: 13px; } }
+@media (max-width: 360px) { .sitebar .brand { display: none; } }
+
+/* plain masthead */
+.masthead { background: linear-gradient(180deg, #0f1724 0%, var(--paper) 100%); }
+.masthead-inner { max-width: calc(var(--wide) + 64px); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); padding-block: 48px 28px; display: grid; gap: 14px; }
+.masthead h1 { color: #f4f7fb; max-width: 18ch; }
+.masthead .eyebrow { color: #c9d3df; }
+.masthead .subtitle { margin: 0; max-width: 46ch; font-family: var(--font-display); font-size: clamp(1.1rem, 0.95rem + 0.8vw, 1.5rem); font-weight: 500; color: #dbe3ec; }
+
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.1rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.45rem, 1.2rem + 1vw, 1.9rem); font-weight: 700; }
+.eyebrow { font-family: var(--font-data); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.prose { max-width: var(--measure); margin: 0; }
+.prose > * + * { margin-top: 0.9em; }
+.prose p { margin-bottom: 0; }
+
+section { padding-block: 44px 8px; display: grid; gap: 22px; }
+section + section { border-top: 1px solid var(--rule); }
+
+/* portrait beside the text */
+.bio { display: flex; gap: 28px; align-items: flex-start; }
+.bio .avatar { flex: none; width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid var(--rule); }
+.bio .prose { min-width: 0; }
+
+/* the site's pages as cards */
+.pages { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 24px; max-width: 1000px; }
+.pages li { display: grid; gap: 4px; align-content: start; padding: 14px 16px; background: var(--panel); border-radius: 6px; min-width: 0; }
+.pages a { font-weight: 600; }
+.pages span { font-size: 15px; color: var(--muted); }
+
+footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+footer p { margin: 0; }
+
+@media (max-width: 760px) { .pages { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .bio { flex-direction: column; gap: 16px; }
+  .bio .avatar { width: 112px; height: 112px; }
+}
+</style>
+</head>
+<body>
+<div class="sitebar"><nav class="sitebar-inner" aria-label="Site">
+  <a class="brand" href="/">evanshq.me</a>
+  <a href="/">S50 Pro tilt</a>
+  <a href="/super-c8/">Super C8</a>
+  <a href="/links/">Links</a>
+  <a href="/about/" aria-current="page">About</a>
+</nav></div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="eyebrow">About</p>
+    <h1>Rick Evans</h1>
+    <p class="subtitle">Amateur astronomer, observing and imaging with a 1985 Celestron C8</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section id="me" aria-label="About me">
+  <div class="bio">
+    <img class="avatar" src="/img/about.jpg" width="300" height="300" alt="Rick Evans outdoors, in a cap and sunglasses.">
+    <div class="prose">
+      <p>I'm Rick Evans, an amateur astronomer. I've had my <a href="/super-c8/">Celestron Super C8 Plus</a> since about 1991. I use it for visual observing and planetary imaging, and in the film days I photographed through it with an Olympus OM-1.</p>
+      <p>In September 2026 I bought a ZWO Seestar S50 Pro for deep-sky imaging. When the corners of its frames looked soft, I measured it, then measured its replacement the same way. The <a href="/">Seestar S50 Pro tilt measurements</a> are the result. The tools I used are free on <a href="https://github.com/func-end/s50-tilt-tools">GitHub</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="site" aria-labelledby="site-h">
+  <h2 id="site-h">On this site</h2>
+  <ul class="pages">
+    <li><a href="/">Seestar S50 Pro tilt measurements</a><span>Corner-by-corner star sizes on two units, how the number is worked out, and how to check your own.</span></li>
+    <li><a href="/super-c8/">Celestron Super C8 Plus</a><span>My 1985 black-tube C8: the scope, keeping it running, imaging and a bit of history.</span></li>
+    <li><a href="/links/">Best astronomy websites</a><span>The ten most-visited astronomy sites, plus my favourite free tools and guides.</span></li>
+  </ul>
+</section>
+
+<section id="contact" aria-labelledby="contact-h">
+  <h2 id="contact-h">Find me</h2>
+  <div class="prose">
+    <p>I'm <strong>forloop</strong> on Cloudy Nights, where I first posted my tilt results in the <a href="https://www.cloudynights.com/forums/topic/1010976-seestar-s50-pro-camera-tilt/page/2/">Seestar S50 Pro camera tilt thread</a>. I'm also on <a href="https://www.linkedin.com/in/rickdevans/">LinkedIn</a>.</p>
+    <p>Questions about the S50 Pro measurements, or results from your own? Open an issue on the code repository: <a href="https://github.com/func-end/s50-tilt-tools/issues">github.com/func-end/s50-tilt-tools/issues</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Rick Evans · <a href="/">Seestar S50 Pro tilt measurements</a> · <a href="/super-c8/">Celestron Super C8 Plus</a> · <a href="/links/">best astronomy websites</a></p>
+  <p>This page sets no cookies. The only thing it loads from another site is Cloudflare's cookie-free visitor count. Updated 15 Nov 2026.</p>
+</footer>
+
+</div>
+<!-- Cloudflare Web Analytics (cookie-free visitor count) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1e788aa3bc0b4de893d159afe1321fca"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

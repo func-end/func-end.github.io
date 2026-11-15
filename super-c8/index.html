@@ -228,6 +228,8 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 .masthead.plain::after { display: none; }
 .planet { max-width: 360px; }
 .planet img { border-radius: 6px; background: #000; }
+.c8-gallery { display: flex; flex-wrap: wrap; gap: 28px; align-items: start; }
+.c8-gallery figure { flex: 0 1 360px; min-width: 0; }
 @media (max-width: 860px) { .c8-hero { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
 </style>
 </head>
@@ -323,10 +325,16 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 
 <section id="gallery" aria-labelledby="gallery-h">
   <h2 id="gallery-h">Gallery</h2>
+  <div class="c8-gallery">
   <figure class="planet">
     <a href="img/jupiter-first.jpg"><img src="img/jupiter-first.jpg" width="360" height="360" loading="lazy" alt="Jupiter with its cloud belts, and one of its moons to the upper left."></a>
     <figcaption><strong>Jupiter, my first planet photo,</strong> through the C8, with one of its moons at upper left.</figcaption>
   </figure>
+  <figure class="planet">
+    <a href="img/c8-outdoor.jpg"><img src="img/c8-outdoor.jpg" width="324" height="300" loading="lazy" alt="Rick standing beside the C8 outdoors in sunshine, holding a camera, with a folding chair beside him. A silver solar filter covers the front of the tube."></a>
+    <figcaption><strong>Out in daylight,</strong> with the solar filter over the front of the tube.</figcaption>
+  </figure>
+  </div>
   <p class="note prose">More photos of the C8 to come.</p>
 </section>
 

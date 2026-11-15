@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; script-src https://static.cloudflareinsights.com; connect-src https://cloudflareinsights.com; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Best Astronomy Websites: the 10 Most Visited, Plus Free Tools</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="The ten most-visited astronomy websites by traffic rank (NASA, Space.com, Cloudy Nights, AstroBin, Stellarium and more), plus free astrophotography software, a field-of-view calculator and beginner guides.">
+<link rel="canonical" href="https://www.evanshq.me/links/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="evanshq.me">
+<meta property="og:title" content="Best Astronomy Websites: the 10 Most Visited, Plus Free Tools">
+<meta property="og:description" content="The ten most-visited astronomy websites by traffic rank, plus free astrophotography software, a field-of-view calculator and beginner guides.">
+<meta property="og:url" content="https://www.evanshq.me/links/">
+<meta property="og:image" content="https://www.evanshq.me/img/og-s50.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Andromeda Galaxy, M31, imaged with a Seestar S50 Pro.">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+/* Links page: same tokens and components as the S50 and C8 pages. A plain
+   masthead, then two lists of sites as cards in a two-column grid that stacks
+   to one column on phones. One dark, night-sky look on purpose. */
+:root {
+  --paper: #090c12;      /* night sky, blue-black */
+  --panel: #111722;      /* raised panels */
+  --ink: #e1e7ef;        /* text */
+  --muted: #8f9bad;      /* captions, secondary */
+  --rule: #1e2633;       /* hairlines */
+  --hot: #ff6a55;        /* hydrogen-alpha red */
+  --link: #4fc4d1;       /* oxygen-III teal: links */
+  --star: #fbbf5f;       /* favourite marker */
+  --font-display: "Avenir Next", Avenir, "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-data: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --measure: 68ch;
+  --wide: 1100px;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.6 var(--font-body);
+  padding-block: 0 48px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+a { color: var(--link); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px; }
+
+.wrap { max-width: calc(var(--wide) + 64px); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+
+/* site bar: links between pages */
+.sitebar { background: #05070b; border-bottom: 1px solid var(--rule); }
+.sitebar-inner { max-width: calc(var(--wide) + 64px); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); display: flex; gap: 20px; align-items: center; min-height: 40px; font-size: 14px; }
+.sitebar a { color: var(--muted); text-decoration: none; }
+.sitebar a:hover, .sitebar a:focus-visible { color: var(--ink); }
+.sitebar a[aria-current="page"] { color: var(--ink); }
+.sitebar .brand { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin-right: auto; }
+.sitebar a { white-space: nowrap; }
+@media (max-width: 400px) { .sitebar-inner { gap: 12px; font-size: 13px; } }
+
+/* plain masthead */
+.masthead { background: linear-gradient(180deg, #0f1724 0%, var(--paper) 100%); }
+.masthead-inner { max-width: calc(var(--wide) + 64px); margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); padding-block: 48px 28px; display: grid; gap: 14px; }
+.masthead h1 { color: #f4f7fb; max-width: 18ch; }
+.masthead .eyebrow { color: #c9d3df; }
+.masthead .subtitle { margin: 0; max-width: 46ch; font-family: var(--font-display); font-size: clamp(1.1rem, 0.95rem + 0.8vw, 1.5rem); font-weight: 500; color: #dbe3ec; }
+
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.1rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.45rem, 1.2rem + 1vw, 1.9rem); font-weight: 700; }
+.eyebrow { font-family: var(--font-data); font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.prose { max-width: var(--measure); margin: 0; }
+.prose > * + * { margin-top: 0.9em; }
+.prose p { margin-bottom: 0; }
+
+section { padding-block: 44px 8px; display: grid; gap: 22px; }
+section + section { border-top: 1px solid var(--rule); }
+section[id] { scroll-margin-top: 16px; }
+
+/* site cards: numbered for the ranked list, starred for favourites */
+.sites { list-style: none; margin: 0; padding: 0; counter-reset: site; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; max-width: 920px; }
+.sites li { counter-increment: site; display: grid; grid-template-columns: 2em minmax(0, 1fr); gap: 2px 0; padding: 12px 16px 12px 12px; background: var(--panel); border-radius: 6px; min-width: 0; }
+.sites li::before { content: counter(site); grid-column: 1; grid-row: 1 / span 2; font-family: var(--font-data); font-size: 13px; color: var(--muted); padding-top: 4px; }
+ul.sites li::before { content: "\2605"; color: var(--star); font-size: 14px; padding-top: 2px; }
+.sites .name { grid-column: 2; overflow-wrap: anywhere; }
+.sites .name a { font-weight: 600; }
+.sites .dom { display: inline-block; font-family: var(--font-data); font-size: 12.5px; color: var(--muted); margin-left: 8px; }
+.sites .what { grid-column: 2; font-size: 15px; color: var(--muted); }
+
+footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+footer p { margin: 0; }
+
+@media (max-width: 640px) { .sites { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) { body { font-size: 16px; } }
+</style>
+</head>
+<body>
+<div class="sitebar"><nav class="sitebar-inner" aria-label="Site">
+  <a class="brand" href="/">evanshq.me</a>
+  <a href="/">S50 Pro tilt</a>
+  <a href="/super-c8/">Super C8</a>
+  <a href="/links/" aria-current="page">Links</a>
+</nav></div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="eyebrow">Astronomy links · updated November 2026</p>
+    <h1>Best astronomy websites</h1>
+    <p class="subtitle">The ten most visited, plus my favourite free tools for observing and astrophotography</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section id="top-ten" aria-labelledby="top-ten-h">
+  <h2 id="top-ten-h">The 10 most-visited astronomy websites</h2>
+  <div class="prose">
+    <p>These are the ten most-visited astronomy websites, in order of Similarweb's global traffic rank for October 2026. Between them they cover space and astronomy news, what's in the night sky tonight, light pollution maps, an astrophotography gallery and amateur astronomy forums.</p>
+    <p>I left out shops, telescope and app makers, general-interest sites and space-weather sites.</p>
+  </div>
+  <ol class="sites">
+    <li><span class="name"><a href="https://www.nasa.gov/">NASA</a><span class="dom">nasa.gov</span></span><span class="what">Missions, images and science news from the US space agency.</span></li>
+    <li><span class="name"><a href="https://www.space.com/">Space.com</a><span class="dom">space.com</span></span><span class="what">Daily space and astronomy news, with night-sky and telescope guides.</span></li>
+    <li><span class="name"><a href="https://www.esa.int/">ESA</a><span class="dom">esa.int</span></span><span class="what">Missions, images and science from the European Space Agency.</span></li>
+    <li><span class="name"><a href="https://theskylive.com/">TheSkyLive</a><span class="dom">theskylive.com</span></span><span class="what">Where the planets, comets and Moon are tonight, with rise and set times for your location.</span></li>
+    <li><span class="name"><a href="https://www.cloudynights.com/">Cloudy Nights</a><span class="dom">cloudynights.com</span></span><span class="what">Discussion forums for amateur astronomers and astrophotographers.</span></li>
+    <li><span class="name"><a href="https://www.lightpollutionmap.info/">Light Pollution Map</a><span class="dom">lightpollutionmap.info</span></span><span class="what">How bright the night sky is where you are, and where to find darker skies.</span></li>
+    <li><span class="name"><a href="https://www.astrobin.com/">AstroBin</a><span class="dom">astrobin.com</span></span><span class="what">An astrophotography gallery that shows the equipment and settings behind each image.</span></li>
+    <li><span class="name"><a href="https://www.universetoday.com/">Universe Today</a><span class="dom">universetoday.com</span></span><span class="what">Space and astronomy news.</span></li>
+    <li><span class="name"><a href="https://stellarium-web.org/">Stellarium Web</a><span class="dom">stellarium-web.org</span></span><span class="what">A planetarium in your browser: the sky from any place, at any time.</span></li>
+    <li><span class="name"><a href="https://www.skyatnightmagazine.com/">BBC Sky at Night Magazine</a><span class="dom">skyatnightmagazine.com</span></span><span class="what">Observing guides, how-tos and equipment reviews from the UK astronomy magazine.</span></li>
+  </ol>
+</section>
+
+<section id="favourites" aria-labelledby="favourites-h">
+  <h2 id="favourites-h">My favourite free astronomy tools and guides</h2>
+  <p class="prose">These aren't in the top ten, but they're favourites of mine and all free: a telescope field-of-view calculator, astrophotography and planetary imaging software, a guide to telescope and camera threads, and introductory astronomy course notes.</p>
+  <ul class="sites">
+    <li><span class="name"><a href="https://astronomy.tools/calculators/field_of_view/">Field of View Calculator</a><span class="dom">astronomy.tools</span></span><span class="what">Pick a target and a telescope with an eyepiece, camera or binoculars, and it shows how the target will fit in the view.</span></li>
+    <li><span class="name"><a href="https://astrowizard.lukomatico.com/">AstroWizard</a><span class="dom">astrowizard.lukomatico.com</span></span><span class="what">Free app for Windows, Mac and Linux that turns a stacked image from a Seestar or any telescope into a finished picture in nine guided steps.</span></li>
+    <li><span class="name"><a href="https://astrowhat.com/resources/planetary-imaging-preprocessor-pipp.38/">PIPP, Planetary Imaging PreProcessor</a><span class="dom">astrowhat.com</span></span><span class="what">Free Windows program that crops each frame of a planetary video and keeps only the best ones before stacking. Astro What? hosts it now that the original site is offline.</span></li>
+    <li><span class="name"><a href="https://agenaastro.com/articles/guides/astronomy-threads-explained.html#webcam">Astronomy Threads Explained</a><span class="dom">agenaastro.com</span></span><span class="what">Which thread fits which, for eyepieces, filters, cameras and telescopes. The link opens at the webcam-camera thread (M12×0.5).</span></li>
+    <li><span class="name"><a href="https://www.astronomynotes.com/">Astronomy Notes</a><span class="dom">astronomynotes.com</span></span><span class="what">Nick Strobel's introductory astronomy course notes, free to read online, chapter by chapter.</span></li>
+  </ul>
+</section>
+
+<section id="about" aria-labelledby="about-h">
+  <h2 id="about-h">About this list</h2>
+  <div class="prose">
+    <p>I'm Rick Evans, an amateur astronomer. This site also has my <a href="/">corner-by-corner tilt measurements of the ZWO Seestar S50 Pro</a> and a page on my <a href="/super-c8/">1985 Celestron Super C8 Plus</a>.</p>
+    <p>Traffic ranks change from month to month, so the order of the top ten will drift over time.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Rick Evans · <a href="/">Seestar S50 Pro tilt measurements</a> · <a href="/super-c8/">Celestron Super C8 Plus</a></p>
+  <p>This page sets no cookies. The only thing it loads from another site is Cloudflare's cookie-free visitor count. Updated 15 Nov 2026.</p>
+</footer>
+
+</div>
+<!-- Cloudflare Web Analytics (cookie-free visitor count) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1e788aa3bc0b4de893d159afe1321fca"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

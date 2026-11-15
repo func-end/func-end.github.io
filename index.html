@@ -193,16 +193,6 @@ ol.steps { padding-left: 1.3em; display: grid; gap: 8px; margin: 0; }
 .about .avatar { flex: none; width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid var(--rule); }
 .about .prose { min-width: 0; }
 @media (max-width: 480px) { .about { flex-direction: column; gap: 16px; } .about .avatar { width: 96px; height: 96px; } }
-/* other astronomy sites */
-.sites { list-style: none; margin: 0; padding: 0; counter-reset: site; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; max-width: 920px; }
-.sites li { counter-increment: site; display: grid; grid-template-columns: 2em minmax(0, 1fr); gap: 2px 0; padding: 12px 16px 12px 12px; background: var(--panel); border-radius: 6px; min-width: 0; }
-.sites li::before { content: counter(site); grid-column: 1; grid-row: 1 / span 2; font-family: var(--font-data); font-size: 13px; color: var(--muted); padding-top: 4px; }
-.sites .name { grid-column: 2; overflow-wrap: anywhere; }
-.sites .name a { font-weight: 600; }
-.sites .dom { display: inline-block; font-family: var(--font-data); font-size: 12.5px; color: var(--muted); margin-left: 8px; }
-.sites .what { grid-column: 2; font-size: 15px; color: var(--muted); }
-ul.sites li::before { content: "\2605"; color: var(--d3); font-size: 14px; padding-top: 2px; }
-@media (max-width: 640px) { .sites { grid-template-columns: minmax(0, 1fr); } }
 footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
 
 @media (max-width: 860px) {
@@ -229,6 +219,8 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 .sitebar a:hover, .sitebar a:focus-visible { color: var(--ink); }
 .sitebar a[aria-current="page"] { color: var(--ink); }
 .sitebar .brand { font-family: var(--font-display); font-weight: 700; color: var(--ink); margin-right: auto; }
+.sitebar a { white-space: nowrap; }
+@media (max-width: 400px) { .sitebar-inner { gap: 12px; font-size: 13px; } }
 @media (max-width: 860px) {
   .toc-inner { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); padding-right: 36px; }
 }
@@ -253,6 +245,7 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
   <a class="brand" href="/">evanshq.me</a>
   <a href="/" aria-current="page">S50 Pro tilt</a>
   <a href="/super-c8/">Super C8</a>
+  <a href="/links/">Links</a>
 </nav></div>
 
 <header class="masthead">
@@ -275,7 +268,6 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
     <a href="#check">Check yours</a>
     <a href="#gallery">Gallery</a>
     <a href="#limits">Limits</a>
-    <a href="#links">Links</a>
     <a href="#about">About</a>
   </div>
 </nav>
@@ -538,31 +530,6 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
   </ul>
 </section>
 
-<section id="links" aria-labelledby="links-h">
-  <h2 id="links-h">Other astronomy sites</h2>
-  <p class="prose">The ten most-visited astronomy websites, in order of Similarweb's global traffic rank for October 2026. I left out shops, telescope and app makers, and general-interest and space-weather sites.</p>
-  <ol class="sites">
-    <li><span class="name"><a href="https://www.nasa.gov/">NASA</a><span class="dom">nasa.gov</span></span><span class="what">Missions, images and science news from the US space agency.</span></li>
-    <li><span class="name"><a href="https://www.space.com/">Space.com</a><span class="dom">space.com</span></span><span class="what">Daily space and astronomy news, with night-sky and telescope guides.</span></li>
-    <li><span class="name"><a href="https://www.esa.int/">ESA</a><span class="dom">esa.int</span></span><span class="what">Missions, images and science from the European Space Agency.</span></li>
-    <li><span class="name"><a href="https://theskylive.com/">TheSkyLive</a><span class="dom">theskylive.com</span></span><span class="what">Where the planets, comets and Moon are tonight, with rise and set times for your location.</span></li>
-    <li><span class="name"><a href="https://www.cloudynights.com/">Cloudy Nights</a><span class="dom">cloudynights.com</span></span><span class="what">Discussion forums for amateur astronomers and astrophotographers.</span></li>
-    <li><span class="name"><a href="https://www.lightpollutionmap.info/">Light Pollution Map</a><span class="dom">lightpollutionmap.info</span></span><span class="what">How bright the night sky is where you are, and where to find darker skies.</span></li>
-    <li><span class="name"><a href="https://www.astrobin.com/">AstroBin</a><span class="dom">astrobin.com</span></span><span class="what">An astrophotography gallery that shows the equipment and settings behind each image.</span></li>
-    <li><span class="name"><a href="https://www.universetoday.com/">Universe Today</a><span class="dom">universetoday.com</span></span><span class="what">Space and astronomy news.</span></li>
-    <li><span class="name"><a href="https://stellarium-web.org/">Stellarium Web</a><span class="dom">stellarium-web.org</span></span><span class="what">A planetarium in your browser: the sky from any place, at any time.</span></li>
-    <li><span class="name"><a href="https://www.skyatnightmagazine.com/">BBC Sky at Night Magazine</a><span class="dom">skyatnightmagazine.com</span></span><span class="what">Observing guides, how-tos and equipment reviews from the UK astronomy magazine.</span></li>
-  </ol>
-  <h3 id="favourites">My own favourites</h3>
-  <p class="prose">Not in the top ten, but favourites of mine:</p>
-  <ul class="sites">
-    <li><span class="name"><a href="https://astronomy.tools/calculators/field_of_view/">Field of View Calculator</a><span class="dom">astronomy.tools</span></span><span class="what">Pick a target and a telescope with an eyepiece, camera or binoculars, and it shows how the target will fit in the view.</span></li>
-    <li><span class="name"><a href="https://astrowizard.lukomatico.com/">AstroWizard</a><span class="dom">astrowizard.lukomatico.com</span></span><span class="what">Free app for Windows, Mac and Linux that turns a stacked image from a Seestar or any telescope into a finished picture in nine guided steps.</span></li>
-    <li><span class="name"><a href="https://astrowhat.com/resources/planetary-imaging-preprocessor-pipp.38/">PIPP, Planetary Imaging PreProcessor</a><span class="dom">astrowhat.com</span></span><span class="what">Free Windows program that crops each frame of a planetary video and keeps only the best ones before stacking. Astro What? hosts it now that the original site is offline.</span></li>
-    <li><span class="name"><a href="https://agenaastro.com/articles/guides/astronomy-threads-explained.html#webcam">Astronomy Threads Explained</a><span class="dom">agenaastro.com</span></span><span class="what">Which thread fits which, for eyepieces, filters, cameras and telescopes. The link opens at the webcam-camera thread (M12×0.5).</span></li>
-    <li><span class="name"><a href="https://www.astronomynotes.com/">Astronomy Notes</a><span class="dom">astronomynotes.com</span></span><span class="what">Nick Strobel's introductory astronomy course notes, free to read online, chapter by chapter.</span></li>
-  </ul>
-</section>
 
 <section id="about" aria-labelledby="about-h">
   <h2 id="about-h">About</h2>
@@ -577,6 +544,7 @@ footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--rule);
 </section>
 
 <footer>
+  <p>More astronomy sites and free tools: <a href="/links/">best astronomy websites</a>.</p>
   <p>Measured October–November 2026. Star detection: ASTAP command-line version CLI-2026.09.01. Analysis scripts in Python, written with help from AI assistants and checked with independent methods.</p>
   <p>This page sets no cookies. The only thing it loads from another site is Cloudflare's cookie-free visitor count. Updated 15 Nov 2026.</p>
 </footer>
